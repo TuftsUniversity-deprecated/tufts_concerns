@@ -16,5 +16,8 @@
 !/log/.keep
 /tmp
 
-#ignore the app server
+# ignore the app server
 jetty/
+
+# ignore migration report
+migration_report/
