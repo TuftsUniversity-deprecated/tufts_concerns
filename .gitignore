@@ -21,3 +21,6 @@ jetty/
 
 # ignore migration report
 migration_report/
+
+# ignore config files with credentials
+config/fedora3.yml
