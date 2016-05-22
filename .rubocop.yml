@@ -1,0 +1,17 @@
+inherit_from: .rubocop_todo.yml
+AllCops:
+  Include:
+    - Rakefile
+    - config.ru
+  Exclude:
+    - db/schema.rb
+Lint/UnusedBlockArgument:
+  Exclude:
+    - 'config/initializers/hydra_config.rb'
+Metrics/ClassLength:
+  Exclude:
+    - 'app/controllers/catalog_controller.rb'
+Metrics/LineLength:
+  Enabled: false
+Rails:
+  Enabled: true
