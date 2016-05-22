@@ -1,0 +1,31 @@
+language: ruby
+rvm:
+  - 2.2.3
+
+sudo: false
+cache: bundler
+
+notifications:
+  email:
+    - mike.korcynski@tufts.edu
+
+before_script:
+  - cp config/database.yml.sample config/database.yml
+  - cp config/fedora.yml.sample config/fedora.yml
+  - cp config/fedora3.yml.sample config/fedora3.yml
+  - cp config/solr.yml.sample config/solr.yml
+  - cp config/redis.yml.sample config/redis.yml
+  - cp config/blacklight.yml.sample config/blacklight.yml
+  - cp config/secrets.yml.sample config/secrets.yml
+  - mysql -e 'create database test'
+  - bundle exec rake db:setup
+
+env:
+  global:
+    - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+
+bundler_args: --without development debug
+
+services:
+  - redis-server
+  - mysql
