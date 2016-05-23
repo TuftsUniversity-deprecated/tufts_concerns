@@ -59,7 +59,7 @@ group :development, :test do
   gem 'rubocop', require: false
 
   # Code style checking for RSpec files
-#  gem 'rubocop-rspec'
+  gem 'rubocop-rspec', require: false
 
 end
 
