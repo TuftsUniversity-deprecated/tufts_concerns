@@ -17,6 +17,7 @@ before_script:
   - cp config/redis.yml.sample config/redis.yml
   - cp config/blacklight.yml.sample config/blacklight.yml
   - cp config/secrets.yml.sample config/secrets.yml
+  - cp config/jetty.yml.sample config/jetty.yml
   - mysql -e 'create database test'
   - bundle exec rake db:setup
 
