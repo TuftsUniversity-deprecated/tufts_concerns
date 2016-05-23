@@ -22,7 +22,7 @@ before_script:
   - mysql -e 'create database test'
   - bundle exec rake db:setup
 script:
-  - bundle exec ci
+  - bundle exec rake ci
   - bundle exec rubocop
 env:
   global:
