@@ -34,21 +34,30 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'curation_concerns'
 
+group :development do
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
+end
+
 # for fedora 3 -> 4 migration
-gem 'fedora-migrate'
+gem 'fedora-migrate', :git =>	'https://github.com/mkorcy/fedora-migrate.git'
+#gem 'fedora-migrate', :path =>	'/Users/mkorcy01/Documents/workspace/2016/fedora-migrate/'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
   # wraps fedora and solr locally
   gem 'jettywrapper'
+
+  # use for static code analysis
+  gem 'rubocop', require: false
+
+  # Code style checking for RSpec files
+#  gem 'rubocop-rspec'
 
 end
 
@@ -60,6 +69,7 @@ end
 gem 'rsolr', '~> 1.0'
 gem 'devise'
 gem 'devise-guests', '~> 0.3'
+
 group :development, :test do
   gem 'fcrepo_wrapper'
   gem 'rspec-rails'
