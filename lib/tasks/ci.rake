@@ -3,6 +3,8 @@ require 'jettywrapper'
 desc 'Run the default CI configuration'
 task :ci => [:jetty, 'jetty:config'] do
   Jettywrapper.wrap(Jettywrapper.load_config) do
+    Jettywrapper.unzip
+    Rake::Task["jetty:config"].invoke
     Rake::Task['spec'].invoke
   end
 end
