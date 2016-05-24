@@ -1,3 +1,4 @@
+require: rubocop-rspec
 inherit_from: .rubocop_todo.yml
 AllCops:
   Include:
@@ -5,6 +6,7 @@ AllCops:
     - config.ru
   Exclude:
     - db/schema.rb
+    - vendor/**
 Lint/UnusedBlockArgument:
   Exclude:
     - 'config/initializers/hydra_config.rb'
