@@ -23,7 +23,7 @@ before_script:
   - bundle exec rake db:setup
 script:
   - bundle exec rake ci
-  - rubocop -d
+  - bundle exec rubocop
 env:
   global:
     - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
