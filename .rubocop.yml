@@ -5,7 +5,10 @@ AllCops:
     - Rakefile
     - config.ru
   Exclude:
-    - db/schema.rb
+    - 'db/schema.rb'
+    - 'vendor/**/*'
+    - 'spec/fixtures/**/*'
+    - 'tmp/**/*'
 Lint/UnusedBlockArgument:
   Exclude:
     - 'config/initializers/hydra_config.rb'
