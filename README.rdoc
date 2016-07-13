@@ -1,12 +1,25 @@
-== README
+# Tufts Concerns
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Rake Tasks
+* <tt>rake tufts:migrate_elections</tt>
+    - Migrates election records, currently only migrates a single record
+    - To rerun migrations you have to delete migration_report/*.json
+* <tt>tufts:clean4</tt>
+    - Deletes *everything* from the Fedora 4 repository
+    - TODO: Warn on deletion is disable in non-development environments
 
-Things you may want to cover:
+## Implementation Notes
+* Supports LDAP
+* Supports user impersonation (for all users right now in dev)
+    - Clean up user impersonation for admins only like Trove    
 
+
+## Environment Notes
 * Ruby version
+    - Currently using 2.2.1
 
+
+## TODO: Doc creation topics
 * System dependencies
 
 * Configuration
@@ -24,5 +37,3 @@ Things you may want to cover:
 * ...
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
