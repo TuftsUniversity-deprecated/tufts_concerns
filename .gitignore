@@ -33,3 +33,8 @@ config/blacklight.yml
 config/ldap.yml
 #ignore IDE files
 .idea/*
+
+#ignore coverage
+coverage/*
+
+bin/delete_core.sh
