@@ -1,0 +1,10 @@
+<header id="banner" role="banner">
+  <hgroup>
+    <%= render 'shared/brand_bar' %>
+    <%= render 'shared/title_bar' %>
+    <% if current_user && current_staff_user %>
+        <%= render 'user_impersonate/header' %>
+    <% end %>
+
+  </hgroup>
+</header>
