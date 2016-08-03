@@ -7,19 +7,32 @@ class User < ActiveRecord::Base
 
 
   if Blacklight::Utils.needs_attr_accessible?
-    attr_accessible :email, :password, :password_confirmation
+    attr_accessible :username, :password, :password_confirmation
   end
   # Connects this user object to Blacklights Bookmarks.
   include Blacklight::User
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :ldap_authenticatable, :trackable
 
   # Method added by Blacklight; Blacklight uses #to_s on your
   # user class to get a user-displayable login/identifier for
   # the account.
+
   def to_s
-    email
+    username
+  end
+  #TODO : temporarily adding this for impersonate2 but this should be
+  # based on roles and saner
+  def admin?
+    true
+  end
+
+  def user_key
+    self.username
+  end
+
+  def display_name  #update this method to return the string you would like used for the user name stored in fedora objects.
+    Devise::LDAP::Adapter.get_ldap_param(self.username, "tuftsEduDisplayNameLF")[0]
   end
 end
