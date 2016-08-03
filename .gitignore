@@ -30,6 +30,6 @@ config/fedora.yml
 config/database.yml
 config/secrets.yml
 config/blacklight.yml
-
+config/ldap.yml
 #ignore IDE files
 .idea/*
