@@ -1,6 +1,8 @@
 # Generated via
 #  `rails generate curation_concerns:work TuftsVotingRecord`
 module CurationConcerns
-  class TuftsVotingRecordActor < CurationConcerns::BaseActor
+  module Actors
+    class TuftsVotingRecordActor < CurationConcerns::Actors::BaseActor
+    end
   end
 end
