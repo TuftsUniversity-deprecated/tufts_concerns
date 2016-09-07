@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.6'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
@@ -32,9 +32,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'curation_concerns'
+gem 'curation_concerns', '1.3.3'
 
 gem 'coveralls', require: false
+
+gem 'user_impersonate2', :require => 'user_impersonate'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
@@ -71,6 +73,7 @@ end
 gem 'rsolr', '~> 1.0'
 gem 'devise'
 gem 'devise-guests', '~> 0.3'
+gem "devise_ldap_authenticatable"
 
 group :development, :test do
   gem 'fcrepo_wrapper'
