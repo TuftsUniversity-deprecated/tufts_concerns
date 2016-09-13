@@ -1,0 +1,7 @@
+#!/bin/bash
+
+clear
+rm ./migration_report/*
+rake tufts:migrate_elections
+cat ./migration_report/*
+
