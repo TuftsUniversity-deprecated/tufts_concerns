@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/mkorcy/fedora-migrate.git
-  revision: 18b1344aa60fab06654b44bce4d51d75f549c563
+  revision: e5cc2e4b8fa1f9ac565f3c3de81bd82abfd45345
   specs:
     fedora-migrate (0.4.0)
       rchardet
