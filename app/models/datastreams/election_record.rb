@@ -90,10 +90,7 @@ module Datastreams
     end
 
     def office_name(id)
-      l = Logger.new(STDOUT)
-      l.info("---------- Office name ---------")
       office = Office.find(id)
-
       office.blank? ? nil : office.name
     end
 
