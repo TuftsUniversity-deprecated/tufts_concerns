@@ -10,6 +10,7 @@ AllCops:
     - 'vendor/**/*'
     - 'spec/fixtures/**/*'
     - 'tmp/**/*'
+    - 'config/initializers/patch-net_http.rb'
 Lint/UnusedBlockArgument:
   Exclude:
     - 'config/initializers/hydra_config.rb'

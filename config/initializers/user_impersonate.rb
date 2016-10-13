@@ -41,4 +41,3 @@ module UserImpersonate
     config.current_staff = 'current_user'
   end
 end
-
