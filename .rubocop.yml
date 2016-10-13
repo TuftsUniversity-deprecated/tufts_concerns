@@ -1,6 +1,7 @@
 require: rubocop-rspec
 inherit_from: .rubocop_todo.yml
 AllCops:
+  DisplayCopNames: true
   Include:
     - Rakefile
     - config.ru
@@ -16,6 +17,10 @@ Metrics/ClassLength:
   Exclude:
     - 'app/controllers/catalog_controller.rb'
 Metrics/LineLength:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Metrics/AbcSize:
   Enabled: false
 Rails:
   Enabled: true

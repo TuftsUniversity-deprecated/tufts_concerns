@@ -16,5 +16,4 @@ class Office
   def self.find(office_id)
     @offices[office_id.to_s]
   end
-
 end

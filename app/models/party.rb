@@ -21,4 +21,3 @@ class Party
     @parties
   end
 end
-

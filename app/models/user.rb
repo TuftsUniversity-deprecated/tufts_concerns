@@ -22,17 +22,19 @@ class User < ActiveRecord::Base
   def to_s
     username
   end
-  #TODO : temporarily adding this for impersonate2 but this should be
+
+  # TODO : temporarily adding this for impersonate2 but this should be
   # based on roles and saner
   def admin?
     true
   end
 
   def user_key
-    self.username
+    username
   end
 
-  def display_name  #update this method to return the string you would like used for the user name stored in fedora objects.
-    Devise::LDAP::Adapter.get_ldap_param(self.username, "tuftsEduDisplayNameLF")[0]
+  # update this method to return the string you would like used for the user name stored in fedora objects.
+  def display_name
+    Devise::LDAP::Adapter.get_ldap_param(username, "tuftsEduDisplayNameLF")[0]
   end
 end
