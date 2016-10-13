@@ -10,6 +10,7 @@ notifications:
     - mike.korcynski@tufts.edu
 
 before_script:
+  - mkdir -p tmp && export TMPDIR=tmp
   - cp config/database.yml.sample config/database.yml
   - cp config/fedora.yml.sample config/fedora.yml
   - cp config/fedora3.yml.sample config/fedora3.yml
