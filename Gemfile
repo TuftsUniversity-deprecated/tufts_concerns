@@ -54,9 +54,6 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
-  # wraps fedora and solr locally
-  gem 'jettywrapper'
-
   # use for static code analysis
   gem 'rubocop', require: false
 
@@ -67,7 +64,8 @@ end
 
 
 group :development, :test do
-  gem 'solr_wrapper', '>= 0.3'
+  gem 'solr_wrapper'
+  gem 'fcrepo_wrapper'
 end
 
 gem 'rsolr', '~> 1.0'
