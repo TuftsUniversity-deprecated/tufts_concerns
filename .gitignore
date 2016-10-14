@@ -38,3 +38,5 @@ config/ldap.yml
 coverage/*
 
 bin/delete_core.sh
+
+.byebug_history
