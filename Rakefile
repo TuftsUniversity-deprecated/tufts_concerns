@@ -12,3 +12,29 @@ Rake::Task[:default].clear
 task :default => [:ci]
 
 require 'solr_wrapper/rake_task'
+
+require 'solr_wrapper'
+require 'fcrepo_wrapper'
+
+desc 'Run the default CI configuration'
+task :ci do
+  SolrWrapper.wrap do |solr|
+    FcrepoWrapper.wrap do |solr|
+      # Something that requires Fcrepo
+      Rake::Task['spec'].invoke
+    end
+  end
+end
+
+desc 'Run a dev environment'
+task :dev do
+   SolrWrapper.wrap do
+    FcrepoWrapper.wrap do |solr|
+       begin
+         sleep
+       rescue Interrupt
+        puts "Shutting down..."
+       end
+     end
+   end
+end
