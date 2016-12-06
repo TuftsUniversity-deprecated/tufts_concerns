@@ -1,11 +1,13 @@
+require 'devise'
+
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
   # ==> LDAP Configuration
-  # config.ldap_logger = true
-  # config.ldap_create_user = false
+  config.ldap_logger = true
+  config.ldap_create_user = true
   # config.ldap_update_password = true
-  # config.ldap_config = "#{Rails.root}/config/ldap.yml"
+  config.ldap_config = "#{Rails.root}/config/ldap.yml"
   # config.ldap_check_group_membership = false
   # config.ldap_check_group_membership_without_admin = false
   # config.ldap_check_attributes = false
@@ -17,7 +19,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` on Rails 4+ applications as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '054ff859ee7e57d4860257431ba352b024b95eacb278ad6a31109f38538543f03de50159b44d052f000867ce6ef47f3c000ebc314cbcca4dcaf17de2793b534e'
+   config.secret_key = '054ff859ee7e57d4860257431ba352b024b95eacb278ad6a31109f38538543f03de50159b44d052f000867ce6ef47f3c000ebc314cbcca4dcaf17de2793b534e'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,

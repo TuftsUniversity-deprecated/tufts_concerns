@@ -1,3 +1,5 @@
+require 'curation_concerns'
+
 CurationConcerns.configure do |config|
   # Injected via `rails g curation_concerns:work TuftsVotingRecord`
   config.register_curation_concern :tufts_voting_record

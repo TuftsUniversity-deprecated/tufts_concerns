@@ -1,5 +1,3 @@
-require "#{Rails.root}/app/models/datastreams/election_record.rb"
-
 class VotingRecordIndexer < CurationConcerns::WorkIndexer
   def generate_solr_document
     super.tap do |solr_doc|

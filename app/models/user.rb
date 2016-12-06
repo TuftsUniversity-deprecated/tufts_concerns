@@ -1,3 +1,5 @@
+require 'curation_concerns'
+
 class User < ActiveRecord::Base
   # Connects this user object to Hydra behaviors.
   include Hydra::User
