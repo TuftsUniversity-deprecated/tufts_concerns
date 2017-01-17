@@ -1,9 +1,14 @@
 require 'curation_concerns'
 require 'devise'
 require 'devise_ldap_authenticatable'
+require 'blacklight'
+require 'rsolr'
+
 module TuftsModelsNg
   class Engine < ::Rails::Engine
-    isolate_namespace TuftsModelsNg
+    # isolate_namespace TuftsModelsNg
+    # Add a load path for this specific Engine
+    config.autoload_paths << File.expand_path("../lib/tufts/vocab", __FILE__)
 
     initializer :append_migrations do |app|
       unless app.root.to_s.match root.to_s
