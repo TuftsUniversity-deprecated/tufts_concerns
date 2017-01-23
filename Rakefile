@@ -1,15 +1,32 @@
 # encoding: UTF-8
 require 'rubygems'
 require 'rails'
-begin
-  require 'bundler/setup'
-rescue LoadError
-  puts 'You must `gem install bundler` and `bundle install` to run rake tasks'
+require 'engine_cart/rake_task'
+require 'rubocop/rake_task'
+require 'rspec/core/rake_task'
+require 'solr_wrapper'
+require 'fcrepo_wrapper'
+
+desc 'Run style checker'
+RuboCop::RakeTask.new(:rubocop) do |task|
+  task.fail_on_error = false
 end
 
-Bundler::GemHelper.install_tasks
+RSpec::Core::RakeTask.new(:spec)
 
-load "tasks/blacklight.rake"
-load "lib/railties/blacklight.rake"
+desc 'Spin up test servers and run specs'
+task :spec_with_app_load  do
+#  SolrWrapper.wrap do
+#    FcrepoWrapper.wrap( port: 8983, verbose: true, managed: true ) do
+      # Something that requires Fcrepo
+      Rake::Task['spec'].invoke
+#    end
+#  end
+end
 
-task :default => [:rubocop, :ci]
+desc 'Generate the engine_cart and spin up test servers and run specs'
+task ci: ['engine_cart:generate'] do
+  puts 'running continuous integration'
+  Rake::Task['spec_with_app_load'].invoke
+end
+task :default => [:rubocop,:ci]
