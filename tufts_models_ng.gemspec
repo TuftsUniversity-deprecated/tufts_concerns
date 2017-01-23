@@ -44,6 +44,7 @@ Gem::Specification.new do |s|
 #  s.add_development_dependency "sqlite3" 'rubocop-rspec', require: false
   s.add_development_dependency 'solr_wrapper'
   s.add_development_dependency 'fcrepo_wrapper'
+  s.add_development_dependency 'coveralls'
 #  s.add_development_dependency "sqlite3" 'rspec-rails'
 
 end
