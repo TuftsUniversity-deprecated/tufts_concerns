@@ -162,5 +162,4 @@ module Blacklight::Controller
 
       redirect_to new_user_session_url(:referer => request.fullpath)
     end
-  
 end

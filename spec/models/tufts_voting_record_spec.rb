@@ -29,5 +29,4 @@ describe TuftsVotingRecord do
       expect(subject['object_type_sim']).to eq ['Datasets']
     end
   end
-
 end

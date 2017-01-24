@@ -1,6 +1,7 @@
 require: rubocop-rspec
 inherit_from: .rubocop_todo.yml
 AllCops:
+  TargetRubyVersion: 2.1
   DisplayCopNames: true
   Include:
     - Rakefile
@@ -11,17 +12,48 @@ AllCops:
     - 'spec/fixtures/**/*'
     - 'tmp/**/*'
     - 'config/initializers/patch-net_http.rb'
+    - 'config/initializers/devise.rb'
+    - 'app/controllers/concerns/blacklight/catalog.rb'
+    - 'app/controllers/concerns/blacklight/controller.rb'
+    - 'spec/models/tufts_generic_object_spec.rb'
+    - 'spec/models/tufts_voting_record_spec.rb'
 Lint/UnusedBlockArgument:
   Exclude:
     - 'config/initializers/hydra_config.rb'
+Metrics/LineLength:
+  Max: 400
+Metrics/MethodLength:
+  Max: 20
 Metrics/ClassLength:
   Exclude:
     - 'app/controllers/catalog_controller.rb'
+Metrics/BlockLength:
+  Exclude:
+    - 'app/models/datastreams/election_record.rb'
+    - 'config/initializers/simple_form_bootstrap.rb'
 Metrics/LineLength:
   Enabled: false
 Style/Documentation:
   Enabled: false
 Metrics/AbcSize:
   Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+RSpec/LeadingSubject:
+  Enbaled: false
+RSpec/DescribedClass:
+  Enabled: false
+RSpec/NamedSubject:
+  Enbabled: false
+RSpec/MultipleExpectations:
+  Enabled: false
+RSpec/ExampleWording:
+  Enabled: false
+Style/CaseIndentation:
+  Enabled: false
+Style/PredicateName:
+  Enabled: false
+Metrics/ModuleLength:
+  Max: 200
 Rails:
   Enabled: true

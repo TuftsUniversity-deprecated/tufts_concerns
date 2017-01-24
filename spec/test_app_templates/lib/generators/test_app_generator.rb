@@ -9,6 +9,7 @@ class TestAppGenerator < Rails::Generators::Base
   def fedora_config
     copy_file "fedora.yml", "config/fedora.yml", verbose: true
   end
+
   def run_spotlight_migrations
     rake "db:migrate RAILS_ENV=test"
   end
