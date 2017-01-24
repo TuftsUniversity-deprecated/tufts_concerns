@@ -42,3 +42,5 @@ bin/delete_core.sh
 .byebug_history
 
 .internal_test_app
+
+Gemfile.lock
