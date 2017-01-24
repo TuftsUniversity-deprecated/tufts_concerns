@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'byebug'
+gem 'rails', '4.2.7.1'
 
 gemspec# BEGIN ENGINE_CART BLOCK
 # engine_cart: 1.1.0
