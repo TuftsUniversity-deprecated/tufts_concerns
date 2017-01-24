@@ -26,6 +26,7 @@ end
 
 desc 'Generate the engine_cart and spin up test servers and run specs'
 task ci: ['engine_cart:generate'] do
+  ENV['environment'] = "test"
   puts 'running continuous integration'
   Rake::Task['spec_with_app_load'].invoke
 end
