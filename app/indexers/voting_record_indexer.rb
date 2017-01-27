@@ -2,11 +2,19 @@ class VotingRecordIndexer < CurationConcerns::WorkIndexer
   def generate_solr_document
     super.tap do |solr_doc|
       object.file_sets.each do |file_set|
-        next unless file_set.type.include?(Tufts::Vocab::TypeTerms.VotingRecord)
-
         f = file_set.original_file(true)
 
+        # if it is not XML don't bother
         next unless f.mime_type == 'text/xml'
+
+        # otherwise check that its truly a voting record
+
+        begin
+          doc = Nokogiri::XML(f.content)
+          next unless doc.xpath('/*').first.name == 'election_record'
+        rescue
+          next
+        end
 
         doc = Datastreams::ElectionRecord.from_xml(f.content)
 

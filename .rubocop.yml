@@ -31,6 +31,7 @@ Metrics/BlockLength:
   Exclude:
     - 'app/models/datastreams/election_record.rb'
     - 'config/initializers/simple_form_bootstrap.rb'
+    - 'app/models/concerns/tufts_metadata.rb'
 Metrics/LineLength:
   Enabled: false
 Style/Documentation:
