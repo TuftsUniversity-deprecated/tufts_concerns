@@ -31,6 +31,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'devise-guests', '~> 0.3'
   s.add_dependency 'devise_ldap_authenticatable'
   s.add_dependency 'sqlite3'
+  s.add_dependency "carrierwave"
+
   s.add_development_dependency "engine_cart"
 #  s.add_development_dependency "sqlite3"
 #  s.add_development_dependency "sqlite3" 'web-console', '~> 2.0'
@@ -38,7 +40,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rubocop', '~> 0.47.0'
   s.add_development_dependency 'rubocop-rspec', '~> 1.10.0'
   s.add_development_dependency 'rspec-rails', '~> 3.1'
-
+  s.add_development_dependency "factory_girl"
 #  s.add_development_dependency "sqlite3" 'spring'
 #  s.add_development_dependency "sqlite3" 'rubocop', require: false
 #  s.add_development_dependency "sqlite3" 'rubocop-rspec', require: false
