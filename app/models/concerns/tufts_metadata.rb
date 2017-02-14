@@ -55,7 +55,49 @@ module TuftsMetadata
       index.as :stored_searchable, :facetable
     end
 
+    property :temporal, predicate: ::RDF::Vocab::DC.temporal, multiple: true do |index|
+      index.as :stored_searchable, :facetable
+    end
 
+    property :purl, predicate: ::RDF::Vocab::Bibframe.hdl, multiple: false do |index|
+      index.as :stored_searchable, :facetable
+    end
+
+    property :references, predicate: ::RDF::Vocab::DC.references, multiple: true do |index|
+      index.as :stored_searchable, :facetable
+    end
+
+    property :replaces, predicate: ::RDF::Vocab::DC.replaces, multiple: true do |index|
+      index.as :stored_searchable, :facetable
+    end
+
+    property :table_of_contents, predicate: ::RDF::Vocab::DC.tableOfContents, multiple: false do |index|
+      index.as :stored_searchable, :facetable
+    end
+
+    property :is_replaced_by, predicate: ::RDF::Vocab::DC.isReplacedBy, multiple: false do |index|
+      index.as :stored_searchable
+    end
+
+    property :extent, predicate: ::RDF::Vocab::DC.extent, multiple: false do |index|
+      index.as :stored_searchable
+    end
+
+    property :provenance, predicate: ::RDF::Vocab::DC.provenance, multiple: false do |index|
+      index.as :stored_searchable
+    end
+
+#    property :access_rights, predicate: ::RDF::Vocab::DC.accessRights, multiple: false do |index|
+#      index.as :stored_searchable
+#    end
+
+    property :rights_holder, predicate: ::RDF::Vocab::DC.rightsHolder, multiple: false do |index|
+      index.as :stored_searchable
+    end
+
+    property :funder, predicate: ::RDF::Vocab::MARCRelators.fnd, multiple: false do |index|
+      index.as :stored_searchable
+    end
   end
 
 end
