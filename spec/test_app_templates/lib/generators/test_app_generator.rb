@@ -11,6 +11,7 @@ class TestAppGenerator < Rails::Generators::Base
   end
 
   def run_spotlight_migrations
+    rake "tufts_models_ng:install:migrations RAILS_ENV=test"
     rake "db:migrate RAILS_ENV=test"
   end
 end
