@@ -1,8 +1,12 @@
 require 'engine_cart'
+require 'factory_girl'
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV['RAILS_ENV'] ||= 'test'
 
 EngineCart.load_application!
+
+FactoryGirl.definition_file_paths = [File.expand_path("../factories", __FILE__)]
+FactoryGirl.find_definitions
 
 if ENV['CI'] || ENV['COVERAGE']
   require 'coveralls'
