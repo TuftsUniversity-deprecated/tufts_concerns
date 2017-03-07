@@ -1,22 +1,20 @@
 require 'spec_helper'
 
 describe TuftsGenericObject do
-  it 'has methods to support a draft version of the object' do
-    expect(TuftsGenericObject.respond_to?(:build_draft_version)).to be_truthy
+  it 'has methods to support a draft version of the object'
+
+  its(:human_readable_type) do
+    expect(is_expected.to eq 'Generic Object')
   end
 
-  describe "to_class_uri" do
-    subject { TuftsGenericObject }
-    it "has sets the class_uri" do
-      expect(subject.to_class_uri).to eq 'info:fedora/cm:Object.Generic'
-    end
+  its(:valid_child_concerns) do
+    expect(is_expected.to eq [])
   end
 
-  describe "setting items" do
-    it "should accept a hash" do
-      subject.item_attributes = { "0" => { "item_id" => '0', "link" => "link one", "mimeType" => "mime one", "fileName" => "file one" }, "1"=> { "item_id" => '1', "link" => "link two", "mimeType" => "mime two", "fileName" => "file two"}, "2" => { "item_id" => '2', "link" => "link three", "mimeType" => "mime three", "fileName" => "file three" } }
-      expect(subject.item(1).link).to eq ["link two"]
-      expect(subject.item(2).item_id).to eq ["2"]
-    end
+  describe "#has_model" do
+    let(:record) { TuftsGenericObject.new(title: ['some title']) }
+    subject { record.has_model }
+    it { is_expected.to eq ['TuftsGenericObject'] }
   end
+
 end

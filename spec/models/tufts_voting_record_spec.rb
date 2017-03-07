@@ -1,8 +1,14 @@
 require 'spec_helper'
 
 describe TuftsVotingRecord do
-  it 'has methods to support a draft version of the object' do
-    # expect(described_class).to respond_to(:build_draft_version)
+  it 'has methods to support a draft version of the object'
+
+  its(:human_readable_type) do
+    expect(is_expected.to eq 'Voting Record')
+  end
+
+  its(:valid_child_concerns) do
+    expect(is_expected.to eq [])
   end
 
   describe "#has_model" do
