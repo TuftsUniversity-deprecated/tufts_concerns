@@ -3,7 +3,4 @@
 require 'rails_helper'
 
 describe CurationConcerns::Actors::TuftsTeiActor do
-  it "has tests" do
-    skip "Add your tests here"
-  end
 end
