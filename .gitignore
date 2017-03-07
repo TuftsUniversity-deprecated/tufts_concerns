@@ -46,3 +46,4 @@ bin/delete_core.sh
 Gemfile.lock
 
 uploads/*
+batch_xml_import/*
