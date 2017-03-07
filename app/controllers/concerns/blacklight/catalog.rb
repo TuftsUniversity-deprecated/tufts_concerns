@@ -52,6 +52,13 @@ module Blacklight::Catalog
     end
   end
 
+  def search_facet_path(options = {})
+    Deprecation.silence(Blacklight::Controller) do
+      search_facet_url(options.merge(only_path: true))
+    end
+  end
+
+
   # updates the search counter (allows the show view to paginate)
   def track
     search_session['counter'] = params[:counter]
