@@ -1,8 +1,12 @@
 require 'curation_concerns'
 require 'devise'
 require 'devise_ldap_authenticatable'
+require 'hydra-role-management'
 require 'blacklight'
 require 'rsolr'
+require 'resque'
+require 'resque-status'
+require 'om'
 
 module TuftsModelsNg
   class Engine < ::Rails::Engine
