@@ -19,6 +19,7 @@ CurationConcerns.configure do |config|
   config.register_curation_concern :tufts_generic_object
   # Injected via `rails g curation_concerns:work TuftsVotingRecord`
   config.register_curation_concern :tufts_voting_record
+  config.register_curation_concern :work
   # Should schema.org microdata be displayed?
   # config.display_microdata = true
 
