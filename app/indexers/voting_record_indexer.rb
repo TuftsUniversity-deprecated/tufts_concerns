@@ -2,13 +2,10 @@ class VotingRecordIndexer < CurationConcerns::WorkIndexer
   def generate_solr_document
     super.tap do |solr_doc|
       object.file_sets.each do |file_set|
-        f = file_set.original_file(true)
 
-        # if it is not XML don't bother
-        next unless f.mime_type == 'text/xml'
+        f = file_set.original_file
 
-        # otherwise check that its truly a voting record
-
+        # check that its truly a voting record
         begin
           doc = Nokogiri::XML(f.content)
           next unless doc.xpath('/*').first.name == 'election_record'
@@ -23,9 +20,10 @@ class VotingRecordIndexer < CurationConcerns::WorkIndexer
 
         solr_doc['party_affiliation_sim'] = get_affs(doc.office.role.ballot)
         solr_doc['party_affiliation_id_ssim'] = get_aff_ids(doc.office.role.ballot)
-        solr_doc['title_tesi'] = solr_doc['title_ssi'] = solr_doc['title_tesim'].first
+        solr_doc['title_tesi'] = solr_doc['title_ssi'] = solr_doc['label_tesim'].first
         solr_doc['voting_record_xml_tesi'] = f.content
         solr_doc['all_text_timv'] = get_all_text(solr_doc)
+
       end # end each file set
     end # End super.tap
   end # End def generate_solr_document
