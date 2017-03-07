@@ -6,6 +6,10 @@ class User < ActiveRecord::Base
   # Connects this user object to Curation Concerns behaviors.
   include CurationConcerns::User
 
+  # Connects this user object to Role behaviors.
+  include Hydra::RoleManagement::UserRoles
+
+  attr_accessor :password
 
 
   if Blacklight::Utils.needs_attr_accessible?

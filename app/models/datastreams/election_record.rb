@@ -1,5 +1,10 @@
+require 'om'
+
 module Datastreams
-  class ElectionRecord < ActiveFedora::OmDatastream
+  class ElectionRecord
+
+    include OM::XML::Document
+    include OM::XML::TerminologyBasedSolrizer
     set_terminology do |t|
       t.root(:path => "election_record",
              :xmlns => "http://dca.tufts.edu/aas",
@@ -63,7 +68,10 @@ module Datastreams
     end
 
     def to_solr
-      solr_doc = super({})
+
+      solr_doc =  self.class.solrize(self)
+
+
       solr_doc["format_tesim"] = "Election Record"
       solr_doc["format_ssim"] = "Election Record"
       solr_doc["date_isi"] = date.to_a.map(&:to_i).first
@@ -75,9 +83,11 @@ module Datastreams
       solr_doc["jurisdiction_tesim"] = jurisdiction.to_a
       solr_doc["jurisdiction_ssim"] = jurisdiction.to_a
 
-      office_id = Array(office.office_id).first
-      solr_doc["office_id_ssim"] = [office_id]
-      solr_doc["office_name_sim"] = solr_doc["office_name_tesim"] = Array(office_name(office_id))
+      unless office.office_id.nil?
+        office_id = Array(office.office_id).first
+        solr_doc["office_id_ssim"] = [office_id]
+        solr_doc["office_name_sim"] = solr_doc["office_name_tesim"] = Array(office_name(office_id))
+      end
 
       solr_doc
     end

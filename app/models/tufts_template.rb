@@ -5,7 +5,18 @@
 class TuftsTemplate < ActiveFedora::Base
   include BaseModel
 
-  has_attributes :template_name, datastream: 'DCA-ADMIN', multiple: false
+  property :template_name, predicate:  ::RDF::Vocab::DC.title , multiple: false do |index|
+    index.as :stored_searchable
+  end
+
+  property :namespace, predicate:   Tufts::Vocab::Terms.namespace , multiple: false do |index|
+    index.as :stored_searchable
+  end
+
+  property :displays_in, predicate: Tufts::Vocab::Terms.displays_in, multiple: true do |index|
+    index.as :stored_searchable, :facetable
+  end
+
   validates :template_name, presence: true
 
   # Initialize and set the default namespace to use when creating templates;
