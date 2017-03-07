@@ -44,3 +44,5 @@ bin/delete_core.sh
 .internal_test_app
 
 Gemfile.lock
+
+uploads/*
