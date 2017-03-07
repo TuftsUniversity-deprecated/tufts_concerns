@@ -4,6 +4,7 @@
 module CurationConcerns
   class TuftsVotingRecordsController < ApplicationController
     include CurationConcerns::CurationConcernController
+    include WithLimitedFileSets
     self.curation_concern_type = TuftsVotingRecord
   end
 end

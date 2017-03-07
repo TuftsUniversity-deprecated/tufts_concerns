@@ -4,6 +4,8 @@
 module CurationConcerns
   class TuftsImagesController < ApplicationController
     include CurationConcerns::CurationConcernController
+    include WithLimitedFileSets
     self.curation_concern_type = TuftsImage
+
   end
 end

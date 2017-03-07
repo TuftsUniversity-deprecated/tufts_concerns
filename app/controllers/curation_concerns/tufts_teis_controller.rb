@@ -4,6 +4,7 @@
 module CurationConcerns
   class TuftsTeisController < ApplicationController
     include CurationConcerns::CurationConcernController
+    include WithLimitedFileSets
     self.curation_concern_type = TuftsTei
   end
 end
