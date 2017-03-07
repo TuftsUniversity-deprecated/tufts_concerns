@@ -1,5 +1,5 @@
 require 'tufts/vocab/tufts_terms'
-module TuftsMetadata
+module DescriptiveMetadata
   extend ActiveSupport::Concern
 
   included do
@@ -87,16 +87,24 @@ module TuftsMetadata
       index.as :stored_searchable
     end
 
-#    property :access_rights, predicate: ::RDF::Vocab::DC.accessRights, multiple: false do |index|
-#      index.as :stored_searchable
-#    end
-
     property :rights_holder, predicate: ::RDF::Vocab::DC.rightsHolder, multiple: false do |index|
       index.as :stored_searchable
     end
 
-    property :funder, predicate: ::RDF::Vocab::MARCRelators.fnd, multiple: false do |index|
+    property :funder, predicate: ::RDF::Vocab::MARCRelators.fnd, multiple: true do |index|
       index.as :stored_searchable
+    end
+
+    property :edm_rights, predicate: ::RDF::Vocab::EDM.rights, multiple: true do |index|
+      index.as :stored_searchable
+    end
+
+    property :held_by, predicate: ::RDF::Vocab::Bibframe.heldBy, multiple: false do |index|
+      index.as :stored_searchable, :facetable
+    end
+
+    property :has_agent_note, predicate: ::RDF::Vocab::PREMIS.hasAgentNote, multiple: false do |index|
+      index.as :stored_searchable, :facetable
     end
   end
 
