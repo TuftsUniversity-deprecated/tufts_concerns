@@ -11,6 +11,10 @@ module DescriptiveMetadata
       index.as :stored_searchable
     end
 
+    property :dc_type, predicate: ::RDF::Vocab::DC.type, multiple: true do |index|
+      index.as :stored_searchable
+    end
+
     property :abstract, predicate: ::RDF::Vocab::DC.abstract, multiple: false do |index|
       index.as :stored_searchable
     end

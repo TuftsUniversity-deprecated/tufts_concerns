@@ -14,6 +14,18 @@ module AdministrativeMetadata
       index.as :stored_searchable
     end
 
+    property :date_accepted, predicate: ::RDF::Vocab::DC.dateAccepted, multiple: false do |index|
+      index.as :stored_searchable
+    end
+
+    property :date_copyrighted, predicate: ::RDF::Vocab::DC.dateCopyrighted, multiple: false do |index|
+      index.as :stored_searchable
+    end
+
+    property :audience, predicate: ::RDF::Vocab::DC.audience, multiple: false do |index|
+      index.as :stored_searchable
+    end
+
     property :resource_modified, predicate: ::RDF::Vocab::DC.modified, multiple: false do |index|
       index.as :stored_searchable
     end
@@ -24,10 +36,6 @@ module AdministrativeMetadata
 
     property :accrual_policy, predicate: ::RDF::Vocab::DC.accrualPolicy, multiple: false do |index|
       index.as :stored_searchable
-    end
-
-    property :steward, predicate: Tufts::Vocab::Terms.steward, multiple: false do |index|
-      index.as :stored_searchable, :facetable
     end
 
     property :steward, predicate: Tufts::Vocab::Terms.steward, multiple: false do |index|

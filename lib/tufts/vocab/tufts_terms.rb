@@ -15,6 +15,8 @@ module Tufts
       term :visibility
       term :batch_id
       term :namespace
+      term :is_notes_of
+      term :is_slides_of
     end
   end
 end
