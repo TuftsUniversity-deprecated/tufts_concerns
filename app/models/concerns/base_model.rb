@@ -6,4 +6,5 @@ module BaseModel
 
   include DescriptiveMetadata
   include AdministrativeMetadata
+  include RelsExtMetadata
 end
