@@ -1,5 +1,69 @@
 desc "Migrate all my objects"
 namespace :tufts do
+
+  desc "define top level collections"
+  task define_top_level_collections: :environment do
+    # top level collections
+    collections = ['Manuscripts','New Nation Votes','Test Items','Tufts Scholarship','University Archives','University Publications']
+      collections.each do |collection|
+        if Collection.where(title: collection).empty?
+          a = Collection.new(title: [collection])
+          a.apply_depositor_metadata 'mkorcy01'
+          a.visibility = Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
+          a.save!
+        end
+      end
+  end
+
+  desc "define secondary collections"
+  task define_secondary_collections: :environment do
+    spec = Gem::Specification.find_by_name("fedora-migrate")
+    gem_root = spec.gem_dir
+    row_count = 0
+    CSV.foreach("#{gem_root}/collection_map.csv", :headers => true, :header_converters => :symbol, :converters => :all) do |row|
+      puts row_count
+      row_count = row_count + 1
+      child_col = row[1]
+      if Collection.where(title: child_col).empty?
+        next if child_col.blank?
+        a = Collection.new(title: [child_col])
+        a.apply_depositor_metadata 'mkorcy01'
+        a.visibility = Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
+        a.save!
+
+        b = Collection.where(title: row[0])
+        unless b.empty?
+          b.first.add_members a.id
+          b.first.save
+        end
+      end
+    end
+  end
+
+  desc "delete all collections"
+  task delete_all_collections: :environment do
+    Collection.all.each {|col| col.delete }
+  end
+
+  desc "import collection mapping table"
+  task import_collections: :environment do
+    spec = Gem::Specification.find_by_name("fedora-migrate")
+    gem_root = spec.gem_dir
+
+    db = SQLite3::Database.open "#{gem_root}/collections.sqlite3"
+
+    CSV.foreach("#{gem_root}/pid_map_collections.csv", :headers => true, :header_converters => :symbol, :converters => :all) do |row|
+
+      #CREATE TABLE collection_map(collection, pid);
+      pid = row[1]
+      col = Collection.where(title: row[0]).first.id
+      db.execute "INSERT INTO collection_map VALUES(\"#{col}\",\"#{pid}\")"
+    end
+
+    db.close if db
+
+  end
+
   task migrate: :environment do
     results = FedoraMigrate.migrate_repository(namespace: "tufts", options: {})
     puts results
