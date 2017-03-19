@@ -1,4 +1,4 @@
-class VotingRecordIndexer < CurationConcerns::WorkIndexer
+class VotingRecordIndexer < CommonIndexer
   def generate_solr_document
     super.tap do |solr_doc|
       object.file_sets.each do |file_set|
@@ -23,7 +23,6 @@ class VotingRecordIndexer < CurationConcerns::WorkIndexer
         solr_doc['title_tesi'] = solr_doc['title_ssi'] = solr_doc['label_tesim'].first
         solr_doc['voting_record_xml_tesi'] = f.content
         solr_doc['all_text_timv'] = get_all_text(solr_doc)
-
       end # end each file set
     end # End super.tap
   end # End def generate_solr_document
