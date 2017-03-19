@@ -32,6 +32,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'hydra-role-management'
   s.add_dependency 'resque-status'
   s.add_dependency 'carrierwave'
+  s.add_dependency 'chronic'
+  s.add_dependency 'blacklight', '~> 6.7.3'
 
   s.add_development_dependency 'engine_cart'
   s.add_development_dependency 'byebug'
