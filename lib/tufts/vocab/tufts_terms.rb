@@ -17,6 +17,7 @@ module Tufts
       term :namespace
       term :is_notes_of
       term :is_slides_of
+      term :createdby
     end
   end
 end
