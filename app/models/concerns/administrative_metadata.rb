@@ -50,7 +50,11 @@ module AdministrativeMetadata
       index.as :stored_searchable, :facetable
     end
 
-    property :term_of_restriction, predicate: Tufts::Vocab::Terms.displays_in, multiple: false do |index|
+    property :term_of_restriction, predicate: Tufts::Vocab::Terms.term_of_restriction, multiple: false do |index|
+      index.as :stored_searchable
+    end
+
+    property :createdby, predicate: Tufts::Vocab::Terms.createdby, multiple: false do |index|
       index.as :stored_searchable
     end
 
