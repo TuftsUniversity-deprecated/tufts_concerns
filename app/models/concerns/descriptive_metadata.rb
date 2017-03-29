@@ -43,7 +43,7 @@ module DescriptiveMetadata
       index.as :stored_searchable, :facetable
     end
 
-    property :hierarchical_geographic, predicate: ::RDF::Vocab::MADS.HierarchicalGeographic, multiple: true do |index|
+    property :geographic_name, predicate: ::RDF::Vocab::MADS.HierarchicalGeographic, multiple: true do |index|
       index.as :stored_searchable, :facetable
     end
 
@@ -64,19 +64,19 @@ module DescriptiveMetadata
     end
 
     property :purl, predicate: ::RDF::Vocab::Bibframe.hdl, multiple: false do |index|
-      index.as :stored_searchable, :facetable
+      index.as :stored_searchable
     end
 
     property :references, predicate: ::RDF::Vocab::DC.references, multiple: true do |index|
-      index.as :stored_searchable, :facetable
+      index.as :stored_searchable
     end
 
     property :replaces, predicate: ::RDF::Vocab::DC.replaces, multiple: true do |index|
-      index.as :stored_searchable, :facetable
+      index.as :stored_searchable
     end
 
     property :table_of_contents, predicate: ::RDF::Vocab::DC.tableOfContents, multiple: false do |index|
-      index.as :stored_searchable, :facetable
+      index.as :stored_searchable
     end
 
     property :is_replaced_by, predicate: ::RDF::Vocab::DC.isReplacedBy, multiple: false do |index|
@@ -91,7 +91,7 @@ module DescriptiveMetadata
       index.as :stored_searchable
     end
 
-    property :rights_holder, predicate: ::RDF::Vocab::DC.rightsHolder, multiple: false do |index|
+    property :rights_holder, predicate: ::RDF::Vocab::DC.rightsHolder, multiple: true do |index|
       index.as :stored_searchable
     end
 
@@ -108,7 +108,7 @@ module DescriptiveMetadata
     end
 
     property :has_agent_note, predicate: ::RDF::Vocab::PREMIS.hasAgentNote, multiple: false do |index|
-      index.as :stored_searchable, :facetable
+      index.as :stored_searchable
     end
   end
 
