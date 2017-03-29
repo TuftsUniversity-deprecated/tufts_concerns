@@ -26,6 +26,7 @@ module AdministrativeMetadata
       index.as :stored_searchable
     end
 
+    # TODO:  what does fedora use to recognize data modified?
     property :resource_modified, predicate: ::RDF::Vocab::DC.modified, multiple: false do |index|
       index.as :stored_searchable
     end
@@ -58,7 +59,7 @@ module AdministrativeMetadata
       index.as :stored_searchable
     end
 
-    # status kill
+    # TODO: status kill
 
     property :end_date, predicate: ::RDF::Vocab::PREMIS.hasEndDate, multiple: false do |index|
       index.as :stored_searchable
