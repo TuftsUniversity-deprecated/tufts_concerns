@@ -14,9 +14,8 @@ describe TuftsAudio do
   end
 
   describe "#has_model" do
-    let(:record) { TuftsAudio.new(title: ['some title']) }
     subject { record.has_model }
+    let(:record) { TuftsAudio.new(title: ['some title']) }
     it { is_expected.to eq ['TuftsAudio'] }
   end
-
 end

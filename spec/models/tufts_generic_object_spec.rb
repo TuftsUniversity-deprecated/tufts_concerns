@@ -12,9 +12,8 @@ describe TuftsGenericObject do
   end
 
   describe "#has_model" do
-    let(:record) { TuftsGenericObject.new(title: ['some title']) }
     subject { record.has_model }
+    let(:record) { TuftsGenericObject.new(title: ['some title']) }
     it { is_expected.to eq ['TuftsGenericObject'] }
   end
-
 end

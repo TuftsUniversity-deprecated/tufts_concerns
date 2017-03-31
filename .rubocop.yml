@@ -40,12 +40,8 @@ Metrics/AbcSize:
   Enabled: false
 Style/ClassAndModuleChildren:
   Enabled: false
-RSpec/LeadingSubject:
-  Enbaled: false
 RSpec/DescribedClass:
   Enabled: false
-RSpec/NamedSubject:
-  Enbabled: false
 RSpec/MultipleExpectations:
   Enabled: false
 RSpec/ExampleWording:

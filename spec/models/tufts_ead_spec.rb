@@ -14,9 +14,8 @@ describe TuftsEad do
   end
 
   describe "#has_model" do
-    let(:record) { TuftsEad.new(title: ['some title']) }
     subject { record.has_model }
+    let(:record) { TuftsEad.new(title: ['some title']) }
     it { is_expected.to eq ['TuftsEad'] }
   end
-
 end

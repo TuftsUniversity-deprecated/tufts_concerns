@@ -14,9 +14,8 @@ describe TuftsRcr do
   end
 
   describe "#has_model" do
-    let(:record) { TuftsRcr.new(title: ['some title']) }
     subject { record.has_model }
+    let(:record) { TuftsRcr.new(title: ['some title']) }
     it { is_expected.to eq ['TuftsRcr'] }
   end
-
 end

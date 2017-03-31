@@ -1,6 +1,6 @@
 class PidUtils
-  NAMESPACE_DRAFT = 'draft'
-  NAMESPACE_PUBLISHED = 'tufts'
+  NAMESPACE_DRAFT = 'draft'.freeze
+  NAMESPACE_PUBLISHED = 'tufts'.freeze
 
   def self.draft_namespace
     NAMESPACE_DRAFT

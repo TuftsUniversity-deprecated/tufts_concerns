@@ -2,21 +2,21 @@
 require 'chronic'
 
 class CommonIndexer < CurationConcerns::WorkIndexer
-
   def generate_solr_document
     super.tap do |solr_doc|
       create_facets solr_doc
-      #create_formatted_fields solr_doc
-      #index_sort_fields solr_doc
+      # create_formatted_fields solr_doc
+      # index_sort_fields solr_doc
     end # End super.tap
   end # End def generate_solr_document
 
   private
+
   def index_sort_fields(solr_doc)
-    #CREATOR SORT
+    # CREATOR SORT
     Solrizer.insert_field(solr_doc, 'author', object.creator.first, :sortable) unless creator.empty?
 
-    #TITLE SORT
+    # TITLE SORT
     Solrizer.insert_field(solr_doc, 'title', object.title, :sortable) if object.title
   end
 
@@ -34,7 +34,6 @@ class CommonIndexer < CurationConcerns::WorkIndexer
     #index_unstemmed_values(solr_doc)
     index_deposit_method(solr_doc)
   end
-
 
   def index_deposit_method(solr_doc)
     case object.createdby

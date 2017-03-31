@@ -14,8 +14,8 @@ describe TuftsTei do
   end
 
   describe "#has_model" do
-    let(:record) { TuftsTei.new(title: ['some title']) }
     subject { record.has_model }
+    let(:record) { TuftsTei.new(title: ['some title']) }
     it { is_expected.to eq ['TuftsTei'] }
   end
 end

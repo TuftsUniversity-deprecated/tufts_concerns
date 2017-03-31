@@ -47,5 +47,4 @@ describe BatchTemplateImport do
     expect(subject.valid?).to be_falsey
     expect(subject.errors[:base]).to eq ["The template does not have the required attributes for the selected record type (title can't be blank)."]
   end
-
 end

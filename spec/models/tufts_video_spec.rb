@@ -14,9 +14,8 @@ describe TuftsVideo do
   end
 
   describe "#has_model" do
-    let(:record) { TuftsVideo.new(title: ['some title']) }
     subject { record.has_model }
+    let(:record) { TuftsVideo.new(title: ['some title']) }
     it { is_expected.to eq ['TuftsVideo'] }
   end
-
 end

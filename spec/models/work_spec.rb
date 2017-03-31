@@ -6,26 +6,18 @@ RSpec.describe Work do
   it 'has methods to support a draft version of the object'
 
   its(:human_readable_type) do
-    expect(is_expected.to eq 'Work')
+    expect(is_expected.to(eq('Work')))
   end
 
   its(:valid_child_concerns) do
-    expect(is_expected.to eq [TuftsAudio,
-                               TuftsEad,
-                               TuftsGenericObject,
-                               TuftsImage,
-                               TuftsPdf,
-                               TuftsRcr,
-                               TuftsTei,
-                               TuftsVideo,
-                               TuftsVotingRecord,
-                               Work])
+    expect(is_expected.to(eq([TuftsAudio, TuftsEad, TuftsGenericObject, TuftsImage,
+                              TuftsPdf, TuftsRcr, TuftsTei, TuftsVideo, TuftsVotingRecord,
+                              Work])))
   end
 
   describe "#has_model" do
-    let(:record) { Work.new(title: ['some title']) }
     subject { record.has_model }
+    let(:record) { Work.new(title: ['some title']) }
     it { is_expected.to eq ['Work'] }
   end
-
 end

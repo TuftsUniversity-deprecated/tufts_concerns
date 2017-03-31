@@ -14,8 +14,8 @@ describe TuftsPdf do
   end
 
   describe "#has_model" do
-    let(:record) { TuftsPdf.new(title: ['some title']) }
     subject { record.has_model }
+    let(:record) { TuftsPdf.new(title: ['some title']) }
     it { is_expected.to eq ['TuftsPdf'] }
   end
 end

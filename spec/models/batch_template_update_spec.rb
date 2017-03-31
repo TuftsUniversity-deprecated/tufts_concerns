@@ -71,5 +71,4 @@ describe BatchTemplateUpdate do
       expect(b.overwrite?).to be_truthy
     end
   end
-
 end
