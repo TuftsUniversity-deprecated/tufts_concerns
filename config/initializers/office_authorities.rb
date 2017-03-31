@@ -14,6 +14,12 @@ else
   response = Net::HTTP.get_response(URI(uri_for_offices_file))
 
   if response.code == '200'
+
+    dirname = File.dirname(filename)
+    unless File.directory?(dirname)
+      FileUtils.mkdir_p(dirname)
+    end
+
     File.open(filename, 'w') do |file|
       file.write response.body.force_encoding('UTF-8')
     end
@@ -27,6 +33,7 @@ end
 
 # Load the offices
 Rails.logger.info "Importing offices from #{filename}"
+
 
 input = Nokogiri::XML(File.new(filename))
 namespaces = { 'auth' => 'http://dca.tufts.edu/aas/auth' }
