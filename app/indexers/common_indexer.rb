@@ -80,80 +80,105 @@ class CommonIndexer < CurationConcerns::WorkIndexer
     end
   end
 
+  def format_dd_mm_yyyy(date)
+    #handle 01/01/2004 style dates
+    if (!date.nil? && !date[/\//].nil?)
+      date = date[date.rindex('/')+1..date.length()]
+      #check for 2 digit year
+      if (date.length() == 2)
+        date = "19" + date
+      end
+    end
+    #end handle 01/01/2004 style dates
+    date
+  end
 
-  def index_pub_date(solr_doc)
+  def format_nd(date)
+    #handle n.d.
+    if (!date.nil? && date[/n\.d/])
+      date = "0"
+    end
+    #end n.d.
+    date
+  end
+
+  def format_yyyy_mm_dd(date)
+    #handle YYYY-MM-DD and MM-DD-YYYY
+    if (!date.nil? && !date[/-/].nil?)
+      if (date.index('-') == 4)
+        date = date[0..date.index('-')-1]
+      else
+        date = date[date.rindex('-')+1..date.length()]
+      end
+    end
+    #end YYYY-MM-DD
+    date
+  end
+
+  def temporal_or_created
     dates = object.date_created
 
     if dates.empty?
       dates = object.temporal
     end
 
-    unless dates.empty?
-      date = dates[0]
-      valid_date = Time.new
-
-      date = date.to_s
-
-      if (!date.nil? && !date[/^c/].nil?)
-        date = date.split[1..10].join(' ')
-      end
-
-      #end handling circa dates
-
-      #handle 01/01/2004 style dates
-      if (!date.nil? && !date[/\//].nil?)
-        date = date[date.rindex('/')+1..date.length()]
-        #check for 2 digit year
-        if (date.length() == 2)
-          date = "19" + date
-        end
-      end
-      #end handle 01/01/2004 style dates
-
-      #handle n.d.
-      if (!date.nil? && date[/n\.d/])
-        date = "0"
-      end
-      #end n.d.
-
-      #handle YYYY-MM-DD and MM-DD-YYYY
-      if (!date.nil? && !date[/-/].nil?)
-        if (date.index('-') == 4)
-          date = date[0..date.index('-')-1]
-        else
-          date = date[date.rindex('-')+1..date.length()]
-        end
-      end
-      #end YYYY-MM-DD
-
-      #Chronic is not gonna like the 4 digit date here it may interpret as military time, and
-      #this may be imperfect but lets try this.
-
-      unless (date.nil? || date == "0")
-        if date.length() == 4
-          date += "-01-01"
-        elsif date.length() == 9
-          date = date[0..3] += "-01-01"
-        elsif date.length() == 7
-          date = date[0..3] += "-01-01"
-        end
-
-        unparsed_date =Chronic.parse(date)
-        unless unparsed_date.nil?
-          valid_date = Time.at(unparsed_date)
-        end
-
-      end
-      if date == "0"
-        valid_date_string = "0"
-      else
-        valid_date_string = valid_date.strftime("%Y")
-      end
-
-      Solrizer.insert_field(solr_doc, 'pub_date', valid_date_string.to_i, :stored_sortable)
-    end
-
+    dates
   end
+
+  def format_circa(date)
+    if (!date.nil? && !date[/^c/].nil?)
+      date = date.split[1..10].join(' ')
+    end
+    #end handling circa dates
+    date
+  end
+
+  def extract_year(valid_date)
+    if date == "0"
+      valid_date_string = "0"
+    else
+      valid_date_string = valid_date.strftime("%Y")
+    end
+    valid_date_string
+  end
+
+  def convert_to_year(date)
+    valid_date = Time.new
+    unless (date.nil? || date == "0")
+      if date.length() == 4
+        date += "-01-01"
+      elsif date.length() == 9
+        date = date[0..3] += "-01-01"
+      elsif date.length() == 7
+        date = date[0..3] += "-01-01"
+      end
+
+      unparsed_date =Chronic.parse(date)
+      unless unparsed_date.nil?
+        valid_date = Time.at(unparsed_date)
+      end
+    end
+    valid_date
+  end
+
+  def index_pub_date(solr_doc)
+    dates = temporal_or_created
+
+    return if dates.empty?
+    date = dates[0]
+    date = date.to_s
+    date = format_circa(date)
+    date = format_dd_mm_yyyy(date)
+    date = format_nd(date)
+    date = format_yyyy_mm_dd(date)
+
+    #Chronic is not gonna like the 4 digit date here it may interpret as military time, and
+    #this may be imperfect but lets try this.
+    valid_date = concert_to_year(date)
+    valid_date_string = extract_year(valid_date)
+    Solrizer.insert_field(solr_doc, 'pub_date', valid_date_string.to_i, :stored_sortable)
+  end
+
   #if possible, exposed as ranges, cf. the Virgo catalog facet "publication era". Under the heading
   #"Date". Also, if possible, use Temporal if "Date.Created" is unavailable.)
 
@@ -163,15 +188,10 @@ class CommonIndexer < CurationConcerns::WorkIndexer
   #automatically based on the available data.
 
   def index_date_info(solr_doc)
-    dates = object.date_created
-
-    if dates.empty?
-      dates = object.temporal
-    end
+    dates = temporal_or_created
 
     unless dates.empty?
       dates.each do |date|
-
         if date.length() == 4
           date += "-01-01"
         end
@@ -188,7 +208,6 @@ class CommonIndexer < CurationConcerns::WorkIndexer
         end
       end
     end
-
   end
 
   # The facets in this category will have labels and several types of digital objects might fit under one label.
