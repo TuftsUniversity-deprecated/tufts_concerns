@@ -16,10 +16,8 @@ else
   if response.code == '200'
 
     dirname = File.dirname(filename)
-    unless File.directory?(dirname)
-      FileUtils.mkdir_p(dirname)
-    end
-    
+    FileUtils.mkdir_p(dirname) unless File.directory?(dirname)
+
     File.open(filename, 'w') do |file|
       file.write response.body.force_encoding('UTF-8')
     end
