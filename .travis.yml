@@ -3,7 +3,6 @@ jdk:
   - oraclejdk8
 rvm:
   - 2.2.3
-
 sudo: false
 cache: bundler
 
@@ -13,7 +12,8 @@ notifications:
 env:
   global:
     - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
-
 services:
   - redis-server
   - mysql
+before_script:
+  - jdk_switcher use oraclejdk8
