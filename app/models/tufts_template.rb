@@ -5,7 +5,7 @@
 class TuftsTemplate < ActiveFedora::Base
   include BaseModel
 
-  property :template_name, predicate:  ::RDF::Vocab::DC.title , multiple: false do |index|
+  property :template_name, predicate:  Tufts::Vocab::Terms.template_name , multiple: false do |index|
     index.as :stored_searchable
   end
 
@@ -25,6 +25,7 @@ class TuftsTemplate < ActiveFedora::Base
   # Here templates override fedora's install default and use 'template' as their namespace
 
   def initialize(attributes = {})
+    attributes = {} if attributes.nil?
     attributes = {namespace: 'template'}.merge(attributes)
     super
   end
@@ -39,6 +40,10 @@ class TuftsTemplate < ActiveFedora::Base
 
   def publishable?
     false
+  end
+
+  def terms_for_editing
+    attributes.keys.collect {|x| x.to_sym } - [:id, :namespace, :access_control_id]
   end
 
   # The list of fields to edit from the DCA_ADMIN datastream
@@ -57,14 +62,6 @@ class TuftsTemplate < ActiveFedora::Base
         attrs.merge!(attribute => value_of_attr)
       end
       attrs
-    end
-
-    rels_ext_attrs = relationship_attributes.map do |attr|
-      { 'relationship_name'  => attr.relationship_name,
-        'relationship_value' => attr.relationship_value }
-    end
-    unless rels_ext_attrs.blank?
-      updates.merge!(relationship_attributes: rels_ext_attrs)
     end
 
     updates
