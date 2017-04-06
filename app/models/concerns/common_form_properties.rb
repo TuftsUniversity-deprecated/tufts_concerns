@@ -46,7 +46,7 @@ module CommonFormProperties
     delegate :batch_id, to: :model
 
     self.terms += [:legacy_pid, :alternative, :dc_type, :abstract, :date, :personal_name, :corporate_name, :city,
-                   :country, :continent, :hierarchical_geographic, :complex_subject, :genre, :spatial, :temporal,
+                   :country, :continent, :geographic_name, :complex_subject, :genre, :spatial, :temporal,
                    :purl, :references, :replaces, :table_of_contents, :is_replaced_by, :extent, :provenance,
                    :rights_holder, :funder, :edm_rights, :held_by, :has_agent_note, :date_submitted, :date_issued,
                    :date_available, :date_accepted, :date_copyrighted, :audience, :resource_modified, :license,
