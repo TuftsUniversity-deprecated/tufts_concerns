@@ -47,3 +47,4 @@ Gemfile.lock
 
 uploads/*
 batch_xml_import/*
+fcrepo4-test-data/*
