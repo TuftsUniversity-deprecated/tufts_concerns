@@ -17,3 +17,4 @@ services:
   - mysql
 before_script:
   - jdk_switcher use oraclejdk8
+  - mkdir -p tmp/solr-test
