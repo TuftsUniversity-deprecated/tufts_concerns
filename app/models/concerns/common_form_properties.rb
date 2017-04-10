@@ -11,7 +11,7 @@ module CommonFormProperties
     delegate :city, to: :model
     delegate :country, to: :model
     delegate :continent, to: :model
-    delegate :hierarchical_geographic, to: :model
+    delegate :geographic_name, to: :model
     delegate :complex_subject, to: :model
     delegate :genre, to: :model
     delegate :spatial, to: :model
