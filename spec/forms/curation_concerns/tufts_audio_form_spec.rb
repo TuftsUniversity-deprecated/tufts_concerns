@@ -5,8 +5,7 @@ describe CurationConcerns::TuftsAudioForm do
   let(:form) { described_class.new(work, nil) }
   describe "#terms" do
     subject { form.terms }
-    it do
-      byebug
+    it do # rubocop:disable RSpec/ExampleLength
       is_expected.to eq [:title, :creator, :contributor, :description, :keyword, :rights, :publisher, :date_created,
                          :subject, :language, :identifier, :based_near, :related_url, :representative_id, :thumbnail_id,
                          :files, :visibility_during_embargo, :embargo_release_date, :visibility_after_embargo,
