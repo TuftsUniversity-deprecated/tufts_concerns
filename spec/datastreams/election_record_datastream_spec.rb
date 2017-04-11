@@ -23,9 +23,9 @@ describe Datastreams::ElectionRecord do
 
     describe "with some fixtures" do
       let(:file1) { File.new(File.expand_path(File.join(fixture_path, "../../../spec/fixtures/election_records/us_potus_1792_RECORD-XML.xml"))) }
-      let(:potus1792) { Datastreams::ElectionRecord.from_xml(file1) }
+      let(:potus1792) { Datastreams::ElectionRecord.from_xml(file1.read) }
       let(:file2) { File.new(File.expand_path(File.join(fixture_path, "../../../spec/fixtures/election_records/al_staterepresentative_madisoncounty_1820_RECORD-XML.xml"))) }
-      let(:madisoncounty1820) { Datastreams::ElectionRecord.from_xml(f.read) }
+      let(:madisoncounty1820) { Datastreams::ElectionRecord.from_xml(file2.read) }
       let(:potus_solr) { potus1792.to_solr }
       let(:county_solr) { madisoncounty1820.to_solr }
       it "should set field values" do # rubocop:disable RSpec/ExampleLength
