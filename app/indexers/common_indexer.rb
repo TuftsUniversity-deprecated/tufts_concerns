@@ -134,7 +134,7 @@ class CommonIndexer < CurationConcerns::WorkIndexer
   end
 
   def extract_year(valid_date)
-    if date == "0"
+    if valid_date == "0"
       valid_date_string = "0"
     else
       valid_date_string = valid_date.strftime("%Y")
@@ -174,7 +174,7 @@ class CommonIndexer < CurationConcerns::WorkIndexer
 
     #Chronic is not gonna like the 4 digit date here it may interpret as military time, and
     #this may be imperfect but lets try this.
-    valid_date = concert_to_year(date)
+    valid_date = convert_to_year(date)
     valid_date_string = extract_year(valid_date)
     Solrizer.insert_field(solr_doc, 'pub_date', valid_date_string.to_i, :stored_sortable)
   end
