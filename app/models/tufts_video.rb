@@ -2,7 +2,7 @@
 #  `rails generate curation_concerns:work TuftsVideo`
 class TuftsVideo < ActiveFedora::Base
   include BaseModel
-
+  include CommonIndexing
   # Change this to restrict which works can be added as a child.
 
 
