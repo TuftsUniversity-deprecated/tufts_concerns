@@ -45,4 +45,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'solr_wrapper'
   s.add_development_dependency 'fcrepo_wrapper'
   s.add_development_dependency 'coveralls'
+  s.add_development_dependency 'database_cleaner', '~> 1.3'
+
 end

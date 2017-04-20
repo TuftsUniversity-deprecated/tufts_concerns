@@ -1,6 +1,10 @@
 require 'engine_cart'
 require 'factory_girl'
 require 'rspec/its'
+require 'active_fedora/cleaner'
+require 'database_cleaner'
+
+
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV['RAILS_ENV'] ||= 'test'
@@ -50,6 +54,16 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
   config.deprecation_stream = 'log/rspec-deprecations.log'
+
+  config.before :suite do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before :each do |example|
+    unless example.metadata[:type] == :view || example.metadata[:no_clean]
+      ActiveFedora::Cleaner.clean!
+    end
+  end
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
