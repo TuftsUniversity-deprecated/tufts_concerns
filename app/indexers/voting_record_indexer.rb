@@ -4,7 +4,6 @@ class VotingRecordIndexer < CommonIndexer
       object.file_sets.each do |file_set|
 
         f = file_set.original_file
-
         # check that its truly a voting record
         begin
           doc = Nokogiri::XML(f.content)
@@ -25,7 +24,9 @@ class VotingRecordIndexer < CommonIndexer
         solr_doc['all_text_timv'] = get_all_text(solr_doc)
       end # end each file set
     end # End super.tap
-  end # End def generate_solr_document
+  end
+
+  # End def generate_solr_document
 
   private
 
