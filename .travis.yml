@@ -21,7 +21,7 @@ before_script:
 before_install:
   - wget http://projects.iq.harvard.edu/files/fits/files/fits-0.8.5.zip
   - unzip fits-0.8.5.zip
-  - sudo chmod +x ./fits-0.8.5/fits.sh
-  - sudo ln -s ./fits-0.8.5/fits.sh ./fits-0.8.5/fits
+  - chmod +x ./fits-0.8.5/fits.sh
+  - ln -s ./fits-0.8.5/fits.sh ./fits-0.8.5/fits
   - rm fits-0.8.5.zip
   - export PATH="$PATH:$(pwd)/fits-0.8.5"
