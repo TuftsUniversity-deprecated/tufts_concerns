@@ -18,10 +18,10 @@ services:
 before_script:
   - jdk_switcher use oraclejdk8
   - mkdir -p tmp/solr-test
-before_install:  
-  - sudo mkdir -p /opt/install
-  - sudo wget -P /opt/install http://projects.iq.harvard.edu/files/fits/files/fits-0.8.5.zip
-  - sudo unzip /opt/install/fits-0.8.5.zip -d /opt/install
-  - sudo chmod +x /opt/install/fits-0.8.5/fits.sh
-  - sudo cp -r /opt/install/fits-0.8.5/* /usr/local/bin/
-  - sudo ln -s /usr/local/bin/fits.sh /usr/local/bin/fits
+before_install:
+  - wget http://projects.iq.harvard.edu/files/fits/files/fits-0.8.5.zip
+  - unzip fits-0.8.5.zip
+  - sudo chmod +x ./fits-0.8.5/fits.sh
+  - sudo ln -s ./fits-0.8.5/fits.sh ./fits-0.8.5/fits
+  - rm fits-0.8.5.zip
+  - export PATH="$PATH:$(pwd)/fits-0.8.5"
