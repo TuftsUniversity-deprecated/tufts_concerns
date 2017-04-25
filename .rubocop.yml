@@ -20,6 +20,8 @@ AllCops:
     - 'app/models/tufts_tei_meta.rb'
     - 'db/migrate/20160919151348_create_sipity.rb'
     - 'app/models/transcript_chunk.rb'
+    - 'app/models/datastreams/ead.rb'
+    - 'app/helpers/eads_helper.rb'
 Lint/UnusedBlockArgument:
   Exclude:
     - 'config/initializers/hydra_config.rb'
