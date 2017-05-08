@@ -1,8 +1,7 @@
 module EadsHelper
-  def collection_has_online_content(pid)
+  def collection_has_online_content(unitid)
     solr_connection = ActiveFedora.solr.conn
-    fq = '{!raw f=collection_id_sim}' + pid
-    # &fq={!raw f=field_name}crazy+\"field+value
+    fq = 'source_tesim:' + unitid
 
     response = solr_connection.get 'select', params: { fq: fq, rows: '1' }
     collection_length = response['response']['docs'].length
@@ -59,4 +58,30 @@ module EadsHelper
 
     result
   end
+
+  def eadid(ead)
+    result = ""
+    url = ""
+    eadid = ead.find_by_terms_and_value(:eadid)
+    unless eadid.nil? || eadid.empty?
+      first_eadid = eadid.first
+      result = first_eadid.text
+      url_attr = first_eadid.attribute("url")
+      url = url_attr.text unless url_attr.nil?
+    end
+
+    return result, url
+  end
+
+  def unitid(ead)
+    result = ""
+    unitid = ead.find_by_terms_and_value(:unitid)
+
+    unless unitid.nil?
+      result = unitid.text
+    end
+
+    return result
+  end
+
 end
