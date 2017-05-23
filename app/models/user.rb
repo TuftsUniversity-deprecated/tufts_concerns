@@ -25,21 +25,31 @@ class User < ActiveRecord::Base
   # user class to get a user-displayable login/identifier for
   # the account.
 
+  ##
+  # @see #username
   def to_s
     username
   end
 
-  # TODO : temporarily adding this for impersonate2 but this should be
-  # based on roles and saner
+  ##
+  # @todo temporarily adding this for impersonate2 but this should be
+  #   based on roles and saner
   def admin?
     true
   end
 
+  ##
+  # @see #username
   def user_key
     username
   end
 
-  # update this method to return the string you would like used for the user name stored in fedora objects.
+  ##
+  # @note Update this method to return the string you would like used for the
+  #   user name stored in fedora objects.
+  #
+  # @todo Remove hard-coded dependency on Devise::LDAP::Adapter, allow
+  #   LDAP-connectionless display names in the test envioronment.
   def display_name
     name_attr = Devise::LDAP::Adapter.get_ldap_param(username, "tuftsEduDisplayNameLF")
     if name_attr.nil?
