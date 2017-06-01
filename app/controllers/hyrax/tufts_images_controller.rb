@@ -3,7 +3,7 @@
 
 module Hyrax
   class TuftsImagesController < ApplicationController
-    include CurationConcerns::CurationConcernController
+    include Hyrax::WorksControllerBehavior
     include WithLimitedFileSets
     include Downloadable
     self.curation_concern_type = TuftsImage

@@ -3,7 +3,7 @@
 
 module Hyrax
   class WorksController < ApplicationController
-    include CurationConcerns::CurationConcernController
+    include Hyrax::WorksControllerBehavior
     self.curation_concern_type = Work
   end
 end

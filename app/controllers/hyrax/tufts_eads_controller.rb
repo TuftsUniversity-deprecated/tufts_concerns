@@ -3,8 +3,9 @@
 
 module Hyrax
   class TuftsEadsController < ApplicationController
+    include Hyrax::WorksControllerBehavior
+
     helper :eads
-    include CurationConcerns::CurationConcernController
     include WithLimitedFileSets
     self.curation_concern_type = TuftsEad
   end

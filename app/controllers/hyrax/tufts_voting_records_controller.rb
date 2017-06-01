@@ -4,7 +4,7 @@
 module Hyrax
   class TuftsVotingRecordsController < ApplicationController
     helper :elections
-    include CurationConcerns::CurationConcernController
+    include Hyrax::WorksControllerBehavior
     include WithLimitedFileSets
     self.curation_concern_type = TuftsVotingRecord
   end

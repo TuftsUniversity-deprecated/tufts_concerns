@@ -3,7 +3,7 @@
 
 module Hyrax
   class TuftsRcrsController < ApplicationController
-    include CurationConcerns::CurationConcernController
+    include Hyrax::WorksControllerBehavior
     include WithLimitedFileSets
     self.curation_concern_type = TuftsRcr
   end

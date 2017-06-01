@@ -3,7 +3,7 @@
 
 module Hyrax
   class TuftsGenericObjectsController < ApplicationController
-    include CurationConcerns::CurationConcernController
+    include Hyrax::WorksControllerBehavior
     include WithLimitedFileSets
     self.curation_concern_type = TuftsGenericObject
   end
