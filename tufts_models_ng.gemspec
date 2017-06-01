@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-rails'
   s.add_dependency 'turbolinks'
   s.add_dependency 'jbuilder', '~> 2.0'
-  s.add_dependency 'curation_concerns', '1.7.0'
+  s.add_dependency 'curation_concerns', '1.7.6'
   s.add_dependency 'rsolr', '~> 1.0'
   s.add_dependency 'devise'
   s.add_dependency 'devise-guests', '~> 0.3'
