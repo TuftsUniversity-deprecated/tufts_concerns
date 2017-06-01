@@ -1,6 +1,6 @@
 # Generated via
 #  `rails generate curation_concerns:work TuftsAudio`
-module CurationConcerns
+module Hyrax
   module Actors
     class TuftsAudioActor < CurationConcerns::Actors::BaseActor
     end

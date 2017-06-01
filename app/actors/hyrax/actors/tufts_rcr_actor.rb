@@ -1,6 +1,6 @@
 # Generated via
 #  `rails generate curation_concerns:work TuftsRcr`
-module CurationConcerns
+module Hyrax
   module Actors
     class TuftsRcrActor < CurationConcerns::Actors::BaseActor
     end
