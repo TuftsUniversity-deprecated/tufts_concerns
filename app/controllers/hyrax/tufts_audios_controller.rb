@@ -1,7 +1,7 @@
 # Generated via
 #  `rails generate curation_concerns:work TuftsAudio`
 
-module CurationConcerns
+module Hyrax
   class TuftsAudiosController < ApplicationController
     include CurationConcerns::CurationConcernController
     include WithLimitedFileSets

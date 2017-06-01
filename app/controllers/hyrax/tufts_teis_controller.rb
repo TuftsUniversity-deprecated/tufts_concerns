@@ -1,7 +1,7 @@
 # Generated via
 #  `rails generate curation_concerns:work TuftsTei`
 
-module CurationConcerns
+module Hyrax
   class TuftsTeisController < ApplicationController
     include CurationConcerns::CurationConcernController
     include WithLimitedFileSets

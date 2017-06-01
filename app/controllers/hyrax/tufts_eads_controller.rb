@@ -1,7 +1,7 @@
 # Generated via
 #  `rails generate curation_concerns:work TuftsEad`
 
-module CurationConcerns
+module Hyrax
   class TuftsEadsController < ApplicationController
     helper :eads
     include CurationConcerns::CurationConcernController

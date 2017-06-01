@@ -1,7 +1,7 @@
 # Generated via
 #  `rails generate curation_concerns:work TuftsPdf`
 
-module CurationConcerns
+module Hyrax
   class TuftsPdfsController < ApplicationController
     include CurationConcerns::CurationConcernController
     include WithLimitedFileSets

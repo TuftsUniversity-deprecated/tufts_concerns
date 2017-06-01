@@ -1,7 +1,7 @@
 # Generated via
 #  `rails generate curation_concerns:work TuftsVotingRecord`
 
-module CurationConcerns
+module Hyrax
   class TuftsVotingRecordsController < ApplicationController
     helper :elections
     include CurationConcerns::CurationConcernController

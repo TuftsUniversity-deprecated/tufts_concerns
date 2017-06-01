@@ -1,7 +1,7 @@
 # Generated via
 #  `rails generate curation_concerns:work TuftsVideo`
 
-module CurationConcerns
+module Hyrax
   class TuftsVideosController < ApplicationController
     include CurationConcerns::CurationConcernController
     include WithLimitedFileSets
