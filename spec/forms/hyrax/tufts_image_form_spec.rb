@@ -2,7 +2,7 @@
 #  `rails generate curation_concerns:work TuftsImage`
 require 'rails_helper'
 
-describe CurationConcerns::TuftsImageForm do
+describe Hyrax::TuftsImageForm do
   let(:work) { TuftsAudio.new }
   let(:form) { described_class.new(work, nil) }
 

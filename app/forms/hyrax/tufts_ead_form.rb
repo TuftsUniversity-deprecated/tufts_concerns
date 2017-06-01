@@ -1,6 +1,6 @@
 # Generated via
 #  `rails generate curation_concerns:work TuftsEad`
-module CurationConcerns
+module Hyrax
   class TuftsEadForm < CurationConcerns::Forms::WorkForm
     include CommonFormProperties
     self.model_class = ::TuftsEad

@@ -1,4 +1,4 @@
-module CurationConcerns
+module Hyrax
   module Forms
     class CollectionEditForm
       include HydraEditor::Form

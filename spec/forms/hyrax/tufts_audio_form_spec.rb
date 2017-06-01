@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe CurationConcerns::TuftsAudioForm do
+describe Hyrax::TuftsAudioForm do
   let(:work) { TuftsAudio.new }
   let(:form) { described_class.new(work, nil) }
   describe "#terms" do
