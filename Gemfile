@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'byebug'
-gem 'rails', '4.2.7.1'
 
 gemspec# BEGIN ENGINE_CART BLOCK
 # engine_cart: 1.1.0
@@ -31,7 +30,7 @@ else
   when /^4.2/
     gem 'responders', '~> 2.0'
     gem 'sass-rails', '>= 5.0'
-    gem 'coffee-rails', '~> 4.1.0'
+    gem 'coffee-rails', '~> 4.2.0'
   when /^4.[01]/
     gem 'sass-rails', '< 5.0'
   end
