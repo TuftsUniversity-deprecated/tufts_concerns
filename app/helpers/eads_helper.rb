@@ -8,24 +8,38 @@ module EadsHelper
     response = solr_connection.get 'select', params: { fq: fq, rows: '1' }
     collection_length = response['response']['docs'].length
 
-    if collection_length > 0
-      true
-    else
-      false
-    end
+    collection_length > 0
   end
 
 
 # This came from tuftsification_hydra's lib/tufts/pid_methods.rb -- is it used elsewhere???
+# I modified it to find legacy pids.
   def ingested?(pid)
-    begin
-      ActiveFedora::Base.load_instance_from_solr(pid)
-      result = true
-    rescue
-      result = false
+    result = false
+    f4_id = pid
+
+    if pid.start_with?("tufts:")
+			solr_connection = ActiveFedora.solr.conn
+			fq = 'legacy_pid_tesim:"' + pid + '"'
+
+			response = solr_connection.get 'select', params: { fq: fq, rows: '1' }
+			collection_length = response['response']['docs'].length
+
+      if collection_length > 0
+        result = true
+        f4_id = response['response']['docs'][0]['id']
+      end
+
+			result = (collection_length > 0)
+    else
+      begin
+        ActiveFedora::Base.load_instance_from_solr(pid)
+        result = true
+      rescue
+      end
     end
 
-    result
+    return result, f4_id
   end
 
 
@@ -86,8 +100,7 @@ module EadsHelper
 
 
   def show_collection_link(id)
-    # This can't be right any more...
-    "/catalog/" + id
+    "/concern/tufts_eads/" + id
   end
 
 
@@ -266,9 +279,9 @@ module EadsHelper
 
     if !name.empty? && !rcr_url.empty?
       rcr_url = "tufts:" + rcr_url
-      ingested = ingested?(rcr_url)
+      ingested, f4_id = ingested?(rcr_url)
       if ingested
-        result = "<a href=\"/catalog/" + rcr_url + "\">" + name + "</a>"
+        result = "<a href=\"/concern/tufts_rcrs/" + f4_id + "\">" + name + "</a>"
       end
     end
 
@@ -297,11 +310,11 @@ module EadsHelper
     unless name.empty?
       unless rcr_url.empty?
         rcr_url = "tufts:" + rcr_url
-        ingested = ingested?(rcr_url)
+        ingested, f4_id = ingested?(rcr_url)
       end
 
       if ingested
-        result = "<a href=\"/catalog/" + rcr_url + "\">" + name + "</a>"
+        result = "<a href=\"/concern/tufts_rcrs/" + f4_id + "\">" + name + "</a>"
       else
         result = name
       end
@@ -546,8 +559,11 @@ module EadsHelper
             child_url = (child_id.nil? ? "" : ("tufts:" + child_id.text))
 
             unless child_text.empty?
-              ingested = !child_url.empty? && ingested?(child_url)
-              result << (ingested ? "<a href=\"/catalog/" + child_url + "\">" : "") + child_text + (ingested ? "</a>" : "")
+              ingested = false
+              unless child_url.empty?
+                ingested, f4_id = ingested?(child_url)
+              end
+              result << (ingested ? "<a href=\"/concern/tufts_rcrs/" + f4_id + "\">" : "") + child_text + (ingested ? "</a>" : "")
             end
           end
         end
@@ -920,8 +936,11 @@ module EadsHelper
               grandchild_url = (grandchild_id.nil? ? "" : grandchild_id.text)
 
               unless grandchild_text.empty?
-                ingested = !grandchild_url.empty? && ingested?(grandchild_url)
-                series_names_and_subjects << (ingested ? "<a href=\"/catalog/" + grandchild_url + "\">" : "") + grandchild_text + (ingested ? "</a>" : "")
+                ingested = false
+                unless grandchild_url.empty?
+                  ingested, f4_id = ingested?(grandchild_url)
+                end
+                series_names_and_subjects << (ingested ? "<a href=\"/concern/tufts_rcrs/" + f4_id + "\">" : "") + grandchild_text + (ingested ? "</a>" : "")
               end
             end
           end
@@ -1103,7 +1122,16 @@ module EadsHelper
         end
       end
 
-      available_online = !page.empty? && ingested?(page)
+      available_online = false
+      unless page.empty?
+        available_online, f4_id = ingested?(page)
+        if available_online
+          page = f4_id
+          unless thumbnail.empty?
+            thumbnail = f4_id
+          end
+        end
+      end
     end
 
     # ASpace EADs have a <dao> element.
@@ -1117,7 +1145,7 @@ module EadsHelper
         physloc = "Dark Archive; <a href=""/contact"">contact DCA</a>"
       else
         # ASpace EADs lack the <daogrp><daoloc> page and thumbnail attributes, so compute them from item_id thusly:
-        page_pid = "tufts:" + item_id
+        page_pid = "tufts:" + item_id             # this is incorrect for f4 - needs to be the f4 id
         begin
           page_doc = ActiveFedora::Base.load_instance_from_solr(page_pid)
           page = page_pid
@@ -1131,7 +1159,7 @@ module EadsHelper
     end
 
     if available_online
-      item_url = "/finding_aids/" + page
+      item_url = "/concern/tufts_images/" + page               # Except that this might not be an image!  It could be a PDF!
     elsif item_type == "subseries"
       item_url = "/finding_aids/" + pid + "/" + item_url_id
     end
