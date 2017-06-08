@@ -12,10 +12,12 @@ describe VotingRecordIndexer do
     file_set.visibility = Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
     file_set.title = ['test file set']
     actor = CurationConcerns::Actors::FileSetActor.new(file_set, user)
-    actor.create_content(file, 'original_file')
-    actor.create_metadata(work)
+    actor.create_content(file, 'original_file', false)
+    actor.create_metadata
+    actor.attach_file_to_work(work)
     work.save
   end
+
   describe "#generate_solr_document" do
     it "has required fields" do
       work = TuftsVotingRecord.find('test_vr1')

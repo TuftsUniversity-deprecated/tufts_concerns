@@ -1,8 +1,8 @@
 # COPIED From https://github.com/mkorcy/tdl_hydra_head/blob/master/lib/tufts/model_methods.rb
 require 'chronic'
 
-class CommonIndexer < CurationConcerns::WorkIndexer
-  def generate_solr_document
+class CommonIndexer < Hyrax::WorkIndexer
+  def generate_solr_docu2321ment
     super.tap do |solr_doc|
       create_facets solr_doc
       # create_formatted_fields solr_doc

@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe Hyrax::TuftsImageForm do
   let(:work) { TuftsAudio.new }
-  let(:form) { described_class.new(work, nil) }
+  let(:form) { described_class.new(work, nil, nil) }
 
   describe "TuftsImageForm" do
     subject { form }

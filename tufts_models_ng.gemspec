@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-rails'
   s.add_dependency 'turbolinks'
   s.add_dependency 'jbuilder', '~> 2.0'
-  s.add_dependency 'curation_concerns', '1.7.6'
+  s.add_dependency 'hyrax', '~> 1.0.0'
   s.add_dependency 'rsolr', '~> 1.0'
   s.add_dependency 'devise'
   s.add_dependency 'devise-guests', '~> 0.3'
@@ -33,7 +33,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'resque-status'
   s.add_dependency 'carrierwave'
   s.add_dependency 'chronic'
-  s.add_dependency 'blacklight', '~> 6.7.3'
+  s.add_dependency 'blacklight', '~> 6.9.0'
 
   s.add_development_dependency 'engine_cart'
   s.add_development_dependency 'byebug'

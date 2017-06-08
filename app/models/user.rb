@@ -1,10 +1,5 @@
-require 'curation_concerns'
-
 class User < ActiveRecord::Base
-  # Connects this user object to Hydra behaviors.
-  include Hydra::User
-  # Connects this user object to Curation Concerns behaviors.
-  include CurationConcerns::User
+  include Hyrax::User
 
   # Connects this user object to Role behaviors.
   include Hydra::RoleManagement::UserRoles

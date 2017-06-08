@@ -1,6 +1,7 @@
-mod = defined?(CurationConcerns) ? CurationConcerns : Hyrax
+method = defined?(CurationConcerns) ? :configure : :config
+CurationConcerns = Hyrax unless defined?(CurationConcerns)
 
-mod.configure do |config|
+CurationConcerns.send(method) do |config|
   # Injected via `rails g curation_concerns:work TuftsVideo`
   config.register_curation_concern :tufts_video
   # Injected via `rails g curation_concerns:work TuftsTei`

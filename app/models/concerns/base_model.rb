@@ -1,6 +1,5 @@
 module BaseModel
   extend ActiveSupport::Concern
-
   include ::CurationConcerns::WorkBehavior
   include ::CurationConcerns::BasicMetadata
 
