@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'turbolinks'
   s.add_dependency 'jbuilder', '~> 2.0'
   s.add_dependency 'hyrax', '>= 1.0.0'
-  s.add_dependency 'rsolr', '~> 1.0'
+  s.add_dependency 'rsolr', '>= 1.0', '< 3.0'
   s.add_dependency 'devise'
   s.add_dependency 'devise-guests', '~> 0.3'
   s.add_dependency 'devise_ldap_authenticatable'
