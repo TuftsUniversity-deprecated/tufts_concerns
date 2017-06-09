@@ -1,4 +1,4 @@
-require 'curation_concerns'
+require 'hyrax'
 require 'devise'
 require 'devise_ldap_authenticatable'
 require 'hydra-role-management'

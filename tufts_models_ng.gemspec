@@ -16,15 +16,15 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
 
-  s.add_dependency 'rails', '~> 4.2.6'
+  s.add_dependency 'rails', '~> 5.0.1'
   s.add_dependency 'sass-rails', '~> 5.0'
   s.add_dependency 'uglifier', '>= 1.3.0'
-  s.add_dependency 'coffee-rails', '~> 4.1.0'
+  s.add_dependency 'coffee-rails', '>= 4.1.0'
   s.add_dependency 'jquery-rails'
   s.add_dependency 'turbolinks'
   s.add_dependency 'jbuilder', '~> 2.0'
-  s.add_dependency 'curation_concerns', '1.7.0'
-  s.add_dependency 'rsolr', '~> 1.0'
+  s.add_dependency 'hyrax', '>= 1.0.0'
+  s.add_dependency 'rsolr', '>= 1.0', '< 3.0'
   s.add_dependency 'devise'
   s.add_dependency 'devise-guests', '~> 0.3'
   s.add_dependency 'devise_ldap_authenticatable'
@@ -33,7 +33,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'resque-status'
   s.add_dependency 'carrierwave'
   s.add_dependency 'chronic'
-  s.add_dependency 'blacklight', '~> 6.7.3'
+  s.add_dependency 'blacklight', '~> 6.9.0'
 
   s.add_development_dependency 'engine_cart'
   s.add_development_dependency 'byebug'

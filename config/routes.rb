@@ -9,13 +9,7 @@ TuftsModelsNg::Engine.routes.draw do
     concerns :searchable
   end
 
-  # devise_for :users
-  mount CurationConcerns::Engine, at: '/'
-  # resources :welcome, only: 'index'
   root 'catalog#index'
-  curation_concerns_collections
-  curation_concerns_basic_routes
-  curation_concerns_embargo_management
   concern :exportable, Blacklight::Routes::Exportable.new
 
   resources :solr_documents, only: [:show], path: '/catalog', controller: 'catalog' do
