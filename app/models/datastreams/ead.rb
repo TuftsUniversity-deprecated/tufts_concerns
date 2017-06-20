@@ -156,7 +156,10 @@ module Datastreams
 
         t.otherfindaid(:path => "otherfindaid") {
           t.head(:path => "head")
-          t.p(:path => "p")
+          t.p(:path => "p") {
+            t.extref(:path => "extref")
+            t.extptr(:path => "extptr")
+          }
         }
 
         t.dsc(:path => "dsc") {
