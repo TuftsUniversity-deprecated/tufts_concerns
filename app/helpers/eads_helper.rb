@@ -19,18 +19,18 @@ module EadsHelper
     f4_id = pid
 
     if pid.start_with?("tufts:")
-			solr_connection = ActiveFedora.solr.conn
-			fq = 'legacy_pid_tesim:"' + pid + '"'
+      solr_connection = ActiveFedora.solr.conn
+      fq = 'legacy_pid_tesim:"' + pid + '"'
 
-			response = solr_connection.get 'select', params: { fq: fq, rows: '1' }
-			collection_length = response['response']['docs'].length
+      response = solr_connection.get 'select', params: { fq: fq, rows: '1' }
+      collection_length = response['response']['docs'].length
 
       if collection_length > 0
         result = true
         f4_id = response['response']['docs'][0]['id']
       end
 
-			result = (collection_length > 0)
+      result = (collection_length > 0)
     else
       begin
         ActiveFedora::Base.load_instance_from_solr(pid)
@@ -958,9 +958,9 @@ module EadsHelper
             unittitle = did_child.text
           elsif childname == "unitdate"
             datetype = did_child.attribute("type")
-            if datetype.nil? || datetype_text == "inclusive"
+            if datetype.nil? || datetype.text == "inclusive"
               unitdate = did_child.text
-            elsif !datetype.nil? && datetype_text == "bulk"
+            elsif !datetype.nil? && datetype.text == "bulk"
               unitdate_bulk = did_child.text
             end
           elsif childname == "physdesc"
