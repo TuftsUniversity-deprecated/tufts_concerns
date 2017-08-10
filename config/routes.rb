@@ -12,7 +12,7 @@ TuftsModelsNg::Engine.routes.draw do
   # devise_for :users
   mount CurationConcerns::Engine, at: '/'
   # resources :welcome, only: 'index'
-  root 'catalog#index'
+  root 'catalog#welcome'
   curation_concerns_collections
   curation_concerns_basic_routes
   curation_concerns_embargo_management
@@ -29,6 +29,7 @@ TuftsModelsNg::Engine.routes.draw do
       delete 'clear'
     end
   end
+  get "/pages/*id" => 'pages#show', as: :page, format: false
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
