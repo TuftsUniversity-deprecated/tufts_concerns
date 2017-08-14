@@ -33,13 +33,10 @@ class TranscriptChunk
 
 
   # parse passed tei object and return an array of TranscriptChunk objects
-  def self.parse(fedora_obj, datastream="ARCHIVAL_XML")
-    datastream_file = File.new(LocalPathService.new(fedora_obj, 'ARCHIVAL_XML', 'xml').local_path)
-    om_document = TuftsTeiMeta.from_xml(datastream_file)
+  def self.parse(om_document)
     parse_participants(om_document)
     result = parse_transcript(om_document)
-    datastream_file.close
-    return result
+    return result, @@speakers
   end
 
 
