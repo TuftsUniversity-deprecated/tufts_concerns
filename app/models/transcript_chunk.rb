@@ -14,6 +14,7 @@ class TranscriptChunk
 
   # TEI has speaker data, parse_participants stores data in @@speakers
   @@speakers = Array.new
+
   def self.get_speakers
     return @@speakers
   end
@@ -42,6 +43,8 @@ class TranscriptChunk
 
   # parse tei participant element and store in class variable
   def self.parse_participants(om_document)
+    @@speakers = Array.new
+
     node_sets = om_document.find_by_terms(:participants)
     node_sets.each do |node|
       node.children.each do |child|
