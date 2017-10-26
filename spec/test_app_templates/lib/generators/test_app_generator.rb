@@ -6,6 +6,14 @@ class TestAppGenerator < Rails::Generators::Base
   # into the test app, this generator will be run immediately
   # after setting up the application
 
+  def party_config
+    copy_file "party-authority.xml", "config/party-authority.xml", verbose: true
+  end
+
+  def office_config
+    copy_file "offices.yml", "config/offices.yml", verbose: true
+  end
+
   def fedora_config
     copy_file "fedora.yml", "config/fedora.yml", verbose: true
   end
