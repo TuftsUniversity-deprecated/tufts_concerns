@@ -30,16 +30,19 @@ end
 
 # Load the parties
 Rails.logger.info "Importing parties from #{filename}"
+begin
+  namespaces = { 'auth' => 'http://dca.tufts.edu/aas/auth' }
 
-namespaces = { 'auth' => 'http://dca.tufts.edu/aas/auth' }
+  Nokogiri::XML(File.new(filename)).root.xpath('/party-authority-list/auth:party', namespaces).each do |node|
+    name = node.attribute('name').value
+    id = node.attribute('id').value
 
-Nokogiri::XML(File.new(filename)).root.xpath('/party-authority-list/auth:party', namespaces).each do |node|
-  name = node.attribute('name').value
-  id = node.attribute('id').value
+    description = node.xpath('./auth:description', namespaces).children.to_s.strip
 
-  description = node.xpath('./auth:description', namespaces).children.to_s.strip
+    party_attrs = { name: name, id: id, description: description }
 
-  party_attrs = { name: name, id: id, description: description }
-
-  Party.register(party_attrs)
+    Party.register(party_attrs)
+  end
+Errno::ENOENT
+  Rails.logger.error "Party authority file not found"
 end
