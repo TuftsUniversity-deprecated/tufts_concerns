@@ -43,6 +43,6 @@ begin
 
     Party.register(party_attrs)
   end
-Errno::ENOENT
+rescue Errno::ENOENT
   Rails.logger.error "Party authority file not found"
 end
