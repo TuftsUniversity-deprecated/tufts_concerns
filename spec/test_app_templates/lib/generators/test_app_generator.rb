@@ -7,11 +7,11 @@ class TestAppGenerator < Rails::Generators::Base
   # after setting up the application
 
   def party_config
-    copy_file "party-authority.xml", "config/party-authority.xml", verbose: true
+    copy_file "party-authority.xml", "tmp/party-authority.xml", verbose: true
   end
 
   def office_config
-    copy_file "offices.yml", "config/offices.yml", verbose: true
+    copy_file "offices.xml", "tmp/offices.xml", verbose: true
   end
 
   def fedora_config
