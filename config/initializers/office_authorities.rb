@@ -49,6 +49,6 @@ begin
     office_attrs = { name: name, id: id, description: desc }
     Office.register(office_attrs)
   end
-rescue Errno::ENOENT => ex
-    Rails.logger.error "Offices authority file not found"
+rescue Errno::ENOENT
+  Rails.logger.error "Offices authority file not found"
 end
